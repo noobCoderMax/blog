@@ -1,30 +1,73 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@charset "utf-8";
+@box-s:0 1px 10px 0 rgba(0, 0, 0, 0.12);
+
+* {
+  /* 清除浏览器自带的内外边 */
+  margin: 0;
+  padding: 0;
+  /* 清除文字装饰线,例如a标签的下划线 */
+  text-decoration: none;
+  /* 清除列表样式 */
+  list-style: none;
+  /* 设置盒子宽高的计算方式为:内容＋内边距＋边框 */
+  box-sizing: border-box;
+  /* 不允许用户选中 */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* 不允许用户拖动图片 */
+  -webkit-user-drag: none;
+}
+/* a标签默认颜色(自行更改) */
+a {
+  color: #000;
 }
 
-nav {
-  padding: 30px;
+/*伪类清除浮动：*/
+.clearfix:after {
+  /*内容为空*/
+  content: "";
+  /*高度为0*/
+  height: 0;
+  /*行高为0*/
+  line-height: 0;
+  /*以块级元素呈现*/
+  display: block;
+  /*将元素隐藏*/
+  visibility: hidden;
+  /*清除元素两侧浮动*/
+  clear: both;
+}
+.clearfix {
+  *zoom: 1; /*兼容IE*/
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+/*单行文本溢出：*/
+.overflow {
+  /*溢出内容不显示*/
+  overflow: hidden;
+  /*文本溢出显示...*/
+  text-overflow: ellipsis;
+  /*不换行*/
+  white-space: nowrap;
+}
+/* 定宽居中时,可对元素直接添加类名:container */
+.container {
+  margin: 0 auto;
+}
+设置表格默认样式 table {
+  border: 1px solid black;
+  /*设置单元格之间的间距*/
+  border-spacing: 0;
+  /*设置单元格边框是否合并：separate分开; collapse合并*/
+  border-collapse: collapse;
 }
 </style>

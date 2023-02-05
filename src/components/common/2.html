@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        const data = [
+            {
+                id:1,
+                name:'唐三藏',
+                identifier:'和尚',
+                pid:0
+            },
+            {
+                id:12,
+                name:'孙悟空',
+                identifier:'石猴',
+                pid:1
+            },
+            ,
+            {
+                id:121,
+                name:'猴子猴孙甲',
+                identifier:'石猴毛',
+                pid:12
+            },
+            ,
+            {
+                id:122,
+                name:'猴子猴孙乙',
+                identifier:'石猴毛',
+                pid:12
+            },
+            {
+                id:13,
+                name:'沙和尚',
+                identifier:'呀怪',
+                pid:1
+            },
+            {
+                id:14,
+                name:'八戒',
+                identifier:'妖怪',
+                pid:1
+            },
+            {
+                id:2,
+                name:'宋江',
+                identifier:'及时雨',
+                pid:0
+            },
+            {
+                id:21,
+                name:'花容',
+                identifier:'小李广',
+                pid:2
+            },
+            {
+                id:22,
+                name:'李逵',
+                identifier:'黑旋风',
+                pid:2
+            },
+            {
+                id:23,
+                name:'吴用',
+                identifier:'智多星',
+                pid:2
+            },
+            {
+                id:3,
+                name:'刘备',
+                identifier:'主公',
+                pid:0
+            },
+            {
+                id:33,
+                name:'诸葛亮',
+                identifier:'军师',
+                pid:3
+            },
+            {
+                id:34,
+                name:'关羽',
+                identifier:'武将',
+                pid:3
+            },
+            {
+                id:35,
+                name:'赵云',
+                identifier:'保镖',
+                pid:3
+            }
+            ,
+            {
+                id:343,
+                name:'关平',
+                identifier:'校尉',
+                pid:34
+            }
+
+        ]
+
+
+        const formatDataToTree = (data)=>{
+            if(!Array.isArray(data) && data.length <=1){
+                return
+            }
+
+            let parent = data.filter(item=>item.pid === 0)
+            let child = data.filter(item =>item.pid !== 0)
+            function format(parent,child){
+                parent.map(p=>{
+                    child.map((c,i)=>{
+                        if(c.pid === p.id){
+                            let _child = JSON.parse(JSON.stringify(child))
+                            _child.splice(i,1)
+                            format([c],_child)
+
+                            if(p.child){
+                                p.child.push(c)
+                            }else {
+                                p.child = [c]
+                            }
+                        }
+                    })
+                })
+            }
+
+            format(parent,child)
+            return parent
+        }
+
+        console.log(formatDataToTree(data))
+
+    </script>
+</body>
+</html>
